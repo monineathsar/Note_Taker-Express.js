@@ -18,12 +18,20 @@ app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/notes.html'));
 });
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/index.html'));
-});
 
+
+// POST request for new notes
+app.post('/api/notes', (req, res) => {
+    res.json(`${req.method} request recieved to add a note`);
+}); 
+
+// Get request to return conent from JSON file
 app.get('/api/notes', (req, res) => {
     res.json(notesData)
+});
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
 app.listen(PORT, () => {
